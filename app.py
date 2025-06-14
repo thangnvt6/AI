@@ -1,18 +1,12 @@
 import streamlit as st
 import numpy as np
 import cv2
-from inference_sdk import InferenceHTTPClient
 import tempfile
 import json
 import unidecode
+import requests
 
 st.title("Nhận dạng hình ảnh & Gợi ý món ăn")
-
-# Khởi tạo client Roboflow
-CLIENT = InferenceHTTPClient(
-    api_url="https://serverless.roboflow.com/",
-    api_key="zFi7uXEd69xEQlaRyoqd"
-)
 
 # Đọc dữ liệu món ăn từ 2 file
 def load_recipes():
@@ -34,6 +28,7 @@ def load_recipes():
         else:
             recipe["nguyen_lieu_norm"] = []
     return recipes
+
 recipes = load_recipes()
 
 uploaded_file = st.file_uploader("Chọn một hình ảnh...", type=["jpg", "jpeg", "png"])
@@ -48,32 +43,38 @@ if uploaded_file is not None:
     try:
         # Lưu ảnh tạm thời
         with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
-            tmp_file.write(cv2.imencode('.jpg', original_image)[1].tobytes())
+            tmp_file.write(cv2.imencode('.jpg', original_image)[1].tobytes()) 
             temp_image_path = tmp_file.name
 
-        # Nhận dạng ảnh
-        result = CLIENT.infer(temp_image_path, model_id="vegetables-detection-ryup0-b08kl/1")
+        # Gửi ảnh đến API Roboflow
+        url = "https://serverless.roboflow.com/vegetables-detection-ryup0-b08kl/1"
+        api_key = "zFi7uXEd69xEQlaRyoqd"
 
-        # Vẽ bounding box và nhãn lên ảnh
+        with open(temp_image_path, "rb") as img_file:
+            files = {"file": img_file}
+            params = {"api_key": api_key}
+            response = requests.post(url, files=files, params=params)
+
+        result = response.json()
+
+        # Vẽ bounding box và gán nhãn lên ảnh
         image_annotated = original_image.copy()
         detected_ingredients = set()
         for prediction in result.get("predictions", []):
             x, y, w, h = prediction["x"], prediction["y"], prediction["width"], prediction["height"]
             label = prediction["class"]
             detected_ingredients.add(unidecode.unidecode(label.lower()))
-            # Tính toán tọa độ góc trên trái và dưới phải
+
             x1 = int(x - w / 2)
             y1 = int(y - h / 2)
             x2 = int(x + w / 2)
             y2 = int(y + h / 2)
-            # Vẽ hình chữ nhật
+
             cv2.rectangle(image_annotated, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            # Vẽ nhãn
             cv2.putText(image_annotated, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
         st.subheader("Hình ảnh đã gán nhãn:")
         st.image(image_annotated, channels="BGR", use_container_width=True)
-
 
         # Thống kê tên và số lượng đối tượng
         st.subheader("Thống kê đối tượng nhận dạng:")
@@ -91,30 +92,26 @@ if uploaded_file is not None:
         st.subheader("Gợi ý món ăn phù hợp:")
         suggested_recipes = []
         if len(detected_ingredients) >= 2:
-            # Chỉ gợi ý món có đủ tất cả nguyên liệu nhận diện
             for recipe in recipes:
                 if all(ingredient in recipe.get("nguyen_lieu_norm", []) for ingredient in detected_ingredients):
                     suggested_recipes.append(recipe)
         else:
-            # Nếu chỉ nhận diện được 1 nguyên liệu, gợi ý như cũ
             for recipe in recipes:
                 if any(ingredient in recipe.get("nguyen_lieu_norm", []) for ingredient in detected_ingredients):
                     suggested_recipes.append(recipe)
+
         if suggested_recipes:
             for recipe in suggested_recipes:
                 st.markdown(f"### {recipe.get('ten_mon', 'Không rõ tên món')}")
-                # Hiện ảnh nếu có
                 if recipe.get("img_url"):
                     st.image(recipe["img_url"], caption="Ảnh minh họa", use_container_width=True)
-                # Hiện link YouTube nếu có
                 if recipe.get("youtube_url"):
                     st.markdown(f"[Xem video hướng dẫn]({recipe['youtube_url']})")
                 st.write(f"**Nguyên liệu:** {', '.join(recipe.get('nguyen_lieu', [])) if recipe.get('nguyen_lieu') else 'Không có thông tin'}")
-                # st.write(f"**Cách dùng:** {recipe.get('cach_dung', 'Không có thông tin')}")
                 st.write("---")
         else:
             st.write("Không tìm thấy món ăn phù hợp với nguyên liệu nhận dạng được.")
-
+        
         st.subheader("Kết quả JSON trả về:")
         st.json(result)
 
