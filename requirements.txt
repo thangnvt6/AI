@@ -1,0 +1,9 @@
+pandas
+scikit-learn
+matplotlib
+seaborn
+streamlit
+numpy
+inference-sdk
+roboflow
+unidecode
