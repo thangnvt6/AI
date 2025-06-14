@@ -46,7 +46,7 @@ if uploaded_file is not None:
             tmp_file.write(cv2.imencode('.jpg', original_image)[1].tobytes()) 
             temp_image_path = tmp_file.name
 
-        # Gửi ảnh đến API Roboflow
+        # Gửi ảnh đến API Roboflow bằng requests
         url = "https://serverless.roboflow.com/vegetables-detection-ryup0-b08kl/1"
         api_key = "zFi7uXEd69xEQlaRyoqd"
 
@@ -55,22 +55,27 @@ if uploaded_file is not None:
             params = {"api_key": api_key}
             response = requests.post(url, files=files, params=params)
 
-        result = response.json()
+        if response.status_code == 200:
+            result = response.json()
+        else:
+            st.error(f"API trả về lỗi {response.status_code}: {response.text}")
+            result = {"predictions": []}
 
-        # Vẽ bounding box và gán nhãn lên ảnh
+        # Vẽ bounding box và nhãn lên ảnh
         image_annotated = original_image.copy()
         detected_ingredients = set()
         for prediction in result.get("predictions", []):
             x, y, w, h = prediction["x"], prediction["y"], prediction["width"], prediction["height"]
             label = prediction["class"]
             detected_ingredients.add(unidecode.unidecode(label.lower()))
-
+            # Tính tọa độ góc trên trái và dưới phải
             x1 = int(x - w / 2)
             y1 = int(y - h / 2)
             x2 = int(x + w / 2)
             y2 = int(y + h / 2)
-
+            # Vẽ hình chữ nhật
             cv2.rectangle(image_annotated, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            # Vẽ nhãn
             cv2.putText(image_annotated, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
         st.subheader("Hình ảnh đã gán nhãn:")
@@ -87,7 +92,7 @@ if uploaded_file is not None:
                 st.write(f"- {label}: {count}")
         else:
             st.write("Không nhận dạng được đối tượng nào.")
-
+        
         # Gợi ý món ăn phù hợp
         st.subheader("Gợi ý món ăn phù hợp:")
         suggested_recipes = []
