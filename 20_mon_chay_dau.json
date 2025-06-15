@@ -1,0 +1,82 @@
+[
+  {
+    "ten_mon": "Goi cuon chay",
+    "nguyen_lieu": ["banh trang", "bun tuoi", "nam huong", "ca rot", "dua leo"]
+  },
+  {
+    "ten_mon": "Salad rau mam dau phu",
+    "nguyen_lieu": ["gia do", "ca chua"]
+  },
+  {
+    "ten_mon": "Nem ran chay",
+    "nguyen_lieu": ["banh da nem", "mien", "moc nhi", "nam huong", "ca rot"]
+  },
+  {
+    "ten_mon": "Sup bi do chay",
+    "nguyen_lieu": ["bi do", "nuoc dua"]
+  },
+  {
+    "ten_mon": "Khoai lang chien gion",
+    "nguyen_lieu": ["khoai lang"]
+  },
+  {
+    "ten_mon": "Dau phu sot ca chua",
+    "nguyen_lieu": ["dau phu", "ca chua", "hanh tay", "toi"]
+  },
+  {
+    "ten_mon": "Canh chua chay",
+    "nguyen_lieu": ["dau phu", "dua", "ca chua", "gia do", "dau bap", "me"]
+  },
+  {
+    "ten_mon": "Bun rieu chay",
+    "nguyen_lieu": ["dau phu", "ca chua", "bun tuoi", "nam huong"]
+  },
+  {
+    "ten_mon": "Mi xao rau cu",
+    "nguyen_lieu": ["mi trung", "bong cai xanh", "ca rot", "dau ha lan"]
+  },
+  {
+    "ten_mon": "Ca tim om dau phu",
+    "nguyen_lieu": ["ca tim", "dau phu", "toi", "gung"]
+  },
+  {
+    "ten_mon": "Nam huong xao sa ot",
+    "nguyen_lieu": ["nam huong", "sa", "ot"]
+  },
+  {
+    "ten_mon": "Nam rom kho tieu",
+    "nguyen_lieu": ["nam rom"]
+  },
+  {
+    "ten_mon": "Nam dui ga chien gion",
+    "nguyen_lieu": ["nam dui ga"]
+  },
+  {
+    "ten_mon": "Sup nam hat sen",
+    "nguyen_lieu": ["nam dong co", "hat sen", "ca rot", "bap non"]
+  },
+  {
+    "ten_mon": "Nam bao ngu hap nuoc tuong",
+    "nguyen_lieu": ["nam bao ngu", "gung", "hanh la"]
+  },
+  {
+    "ten_mon": "Com chien chay",
+    "nguyen_lieu": ["com nguoi", "ca rot", "dau ha lan"]
+  },
+  {
+    "ten_mon": "Com tam chay",
+    "nguyen_lieu": ["com tam", "bi chay", "rau song"]
+  },
+  {
+    "ten_mon": "Com nam rong bien",
+    "nguyen_lieu": ["com", "rong bien kho"]
+  },
+  {
+    "ten_mon": "Com ca ri chay",
+    "nguyen_lieu": ["dau phu", "khoai tay", "ca rot", "hanh tay"]
+  },
+  {
+    "ten_mon": "Com tron Han Quoc chay (Bibimbap chay)",
+    "nguyen_lieu": ["com", "rau cai", "ca rot", "gia do", "nam huong"]
+  }
+]
