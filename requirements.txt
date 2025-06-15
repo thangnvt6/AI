@@ -7,3 +7,5 @@ numpy
 inference-sdk
 roboflow
 unidecode
+opencv-python
+albumentations
