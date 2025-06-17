@@ -1,0 +1,82 @@
+[
+  {
+    "ten_mon": "Gỏi cuốn chay",
+    "nguyen_lieu": ["banh trang", "bun tuoi", "nam huong", "ca rot", "dua leo"]
+  },
+  {
+    "ten_mon": "Salad giá đỗ đậu phụ",
+    "nguyen_lieu": ["gia do", "ca chua", "dau phu"]
+  },
+  {
+    "ten_mon": "Nem rán chay",
+    "nguyen_lieu": ["banh da nem", "mien", "moc nhi", "nam huong", "ca rot"]
+  },
+  {
+    "ten_mon": "Súp bí đỏ chay",
+    "nguyen_lieu": ["bi do", "hanh tay", "toi"]
+  },
+  {
+    "ten_mon": "Khoai lang chiên giòn",
+    "nguyen_lieu": ["khoai lang"]
+  },
+  {
+    "ten_mon": "Đậu phú sốt cà chua",
+    "nguyen_lieu": ["dau phu", "ca chua", "hanh tay", "toi"]
+  },
+  {
+    "ten_mon": "Canh chua chay",
+    "nguyen_lieu": ["dau phu", "dua", "ca chua", "gia do", "dau bap", "me"]
+  },
+  {
+    "ten_mon": "Bún riêu chay",
+    "nguyen_lieu": ["dau phu", "ca chua", "bun tuoi", "nam huong"]
+  },
+  {
+    "ten_mon": "Mì xào rau củ",
+    "nguyen_lieu": ["mi trung", "bong cai xanh", "ca rot", "dau ha lan"]
+  },
+  {
+    "ten_mon": "Cà tím om đậu phụ",
+    "nguyen_lieu": ["ca tim", "dau phu", "toi", "gung"]
+  },
+  {
+    "ten_mon": "Nấm hương xào sả ớt",
+    "nguyen_lieu": ["nam huong", "sa", "ot"]
+  },
+  {
+    "ten_mon": "Nấm rơm kho tiêu",
+    "nguyen_lieu": ["nam rom"]
+  },
+  {
+    "ten_mon": "Nấm đùi gà chiên giòn",
+    "nguyen_lieu": ["nam dui ga"]
+  },
+  {
+    "ten_mon": "Súp nấm hạt sen",
+    "nguyen_lieu": ["nam dong co", "hat sen", "ca rot", "bap non"]
+  },
+  {
+    "ten_mon": "Nấm bào ngư hấp nước tương",
+    "nguyen_lieu": ["nam bao ngu", "gung", "hanh la"]
+  },
+  {
+    "ten_mon": "Cơm chiên chay",
+    "nguyen_lieu": ["com nguoi", "ca rot", "dau ha lan"]
+  },
+  {
+    "ten_mon": "Cơm tấm chay",
+    "nguyen_lieu": ["com tam", "bi chay", "rau song"]
+  },
+  {
+    "ten_mon": "Cơm nắm rong biển",
+    "nguyen_lieu": ["com", "rong bien kho"]
+  },
+  {
+    "ten_mon": "Cơm cà ri chay",
+    "nguyen_lieu": ["dau phu", "khoai tay", "ca rot", "hanh tay"]
+  },
+  {
+    "ten_mon": "Cơm trộn Hàn Quốc chay (Bibimbap chay)",
+    "nguyen_lieu": ["com", "rau cai", "ca rot", "gia do", "nam huong"]
+  }
+]
